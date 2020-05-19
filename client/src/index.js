@@ -5,17 +5,21 @@ import App from './containers/App/App';
 import * as serviceWorker from './serviceWorker';
 import Map from './containers/map/map';
 import ReactTooltip from "react-tooltip";
-
+import { getDefaultNormalizer } from '@testing-library/react';
+import Tooltip from '@material-ui/core/Tooltip';
+import Paper from '@material-ui/core/Paper';
 
 
 function Home() {
   const [tooltip, setTooltip] = useState("");
   const [selected, setSelected] = useState("");
   return(
-    <div class="map">
+    <div class="Map">
+      <Paper elevation={10}>
       <Map setTooltipContent={setTooltip} setSelectedContent={setSelected}/>
       <ReactTooltip>{tooltip}</ReactTooltip>
       <h1>{selected}</h1>
+      </Paper>
     </div>
   );
 }
