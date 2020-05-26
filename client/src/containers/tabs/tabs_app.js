@@ -4,7 +4,7 @@ import { render } from "react-dom";
 import Tabs from './Tabs';
 require('./styles.css');
 
-function App() {
+function tabs_app() {
   return (
     <div>
       <h1>Tabs Demo</h1>
@@ -25,4 +25,4 @@ function App() {
 
 const container = document.createElement('div');
 document.body.appendChild(container);
-render(<App />, container);
+render(<tabs_app />, container);
