@@ -1,13 +1,12 @@
 import React, { useState }  from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './containers/App/App';
 import * as serviceWorker from './serviceWorker';
 import Map from './containers/map/map';
 import ReactTooltip from "react-tooltip";
-import { getDefaultNormalizer } from '@testing-library/react';
-import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
+import Tabs from './containers/tabs/Tabs';
+require('./containers/tabs/styles.css');
 
 
 function Home() {
@@ -24,11 +23,35 @@ function Home() {
   );
 }
 
+function AppTabs() {
+  return (
+    <div>
+      <h1>Tabs</h1>
+     <Tabs>
+      <div label="Map">
+        <Home />
+      </div>
+      <div label="Acknowledgements">
+        Acknowledgements link and table
+      </div>
+      <div label="About">
+        Project Information
+      </div>
+    </Tabs>
+    </div>
+  );
+
+}
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Home />, rootElement)
+const container = document.createElement('div');
+document.body.appendChild(container);
+
+//const rootElement = document.getElementById("root");
+ReactDOM.render(<AppTabs />, container);
