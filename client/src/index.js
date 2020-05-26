@@ -26,7 +26,7 @@ function Home() {
 function AppTabs() {
   return (
     <div>
-      <h1>Tabs</h1>
+      <h1>Covid-19 WebMap</h1>
      <Tabs>
       <div label="Map">
         <Home />
