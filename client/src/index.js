@@ -32,7 +32,8 @@ function AppTabs() {
         <Home />
       </div>
       <div label="Acknowledgements">
-        <h3>Acknowledgements link and table</h3>
+        <h3>Acknowledgements link</h3>
+        <a className="csvlink" href="https://raw.githubusercontent.com/EESI/ISM/master/acknowledgement_table.csv" target="_blank" rel="noopener noreferrer">Click here</a>
       </div>
       <div label="About">
         <h3>Project Information and Source Code</h3>
@@ -42,7 +43,6 @@ function AppTabs() {
   );
 
 }
-
 
 
 // If you want your app to work offline and load faster, you can change
