@@ -6,6 +6,7 @@ import Map from './containers/map/map';
 import ReactTooltip from "react-tooltip";
 import Paper from '@material-ui/core/Paper';
 import Tabs from './containers/tabs/Tabs';
+import 'bootstrap/dist/css/bootstrap.css';
 require('./containers/tabs/styles.css');
 
 
@@ -26,16 +27,22 @@ function Home() {
 function AppTabs() {
   return (
     <div>
-      <h1><b>Covid-19 WebMap</b></h1>
+    <p></p>
+      <h2>ISM WebMap</h2>
+      <p></p>
      <Tabs>
       <div label="WebMap">
         <Home />
       </div>
       <div label="Acknowledgements">
-        <h3>Acknowledgements link</h3>
-        <a className="csvlink" href="https://raw.githubusercontent.com/EESI/ISM/master/acknowledgement_table.csv" target="_blank" rel="noopener noreferrer">Click here</a>
+        <h3>Acknowledgements and link</h3>
+        <a href="https://raw.githubusercontent.com/EESI/ISM/master/acknowledgement_table.csv" target="_blank" rel="noopener noreferrer">Click here to download csv</a>
+        <p></p>
+        <p align="justify">We would like to thank GISAID and Nextstrain for sharing the sequence data and metadata.
+         We also gratefully acknowledge the authors, originating and submitting laboratories of the sequences from GISAID’s EpiFlu Database on which this research is based.
+          The list is detailed in here. All submitters of data may be contacted directly via the <a href="https://www.gisaid.org/" target="_blank" rel="noopener noreferrer">GISAID</a> website.</p>
       </div>
-      <div label="About">
+      <div label="Info">
         <h3>Project Information and Source Code</h3>
       </div>
     </Tabs>
