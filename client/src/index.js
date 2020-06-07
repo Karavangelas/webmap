@@ -8,6 +8,9 @@ import * as serviceWorker from './serviceWorker';
 import Map from './containers/map/map';
 import ReactTooltip from "react-tooltip";
 import Paper from '@material-ui/core/Paper';
+import Tabs from './containers/tabs/Tabs';
+import 'bootstrap/dist/css/bootstrap.css';
+require('./containers/tabs/styles.css');
 ReactDOM.render(
   <ApolloProvider client={client}>
     <React.StrictMode>
@@ -17,9 +20,6 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-import Tabs from './containers/tabs/Tabs';
-import 'bootstrap/dist/css/bootstrap.css';
-require('./containers/tabs/styles.css');
 
 
 function Home() {
