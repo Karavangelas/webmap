@@ -8,9 +8,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {compute_time_series_ISM} from '../../time_series_analysis';
 import {Line, Pie} from 'react-chartjs-2';
-
-
-
 import {
   ComposableMap,
   Geographies,
@@ -20,9 +17,61 @@ import {
   ZoomableGroup
 } from "react-simple-maps";
 import "./styles.css";
+const region_pie_chart = require('../../region_pie_chart.json');
 
 // ALL OF THIS DATA IS JUST PLACE HOLDER
 const color_list = ['rgba(75,192,192,1)', 'rgba(0,100,0,1)', 'rgba(100,0,0,1)', 'rgba(0,0,100,1)', 'rgba(255,127,80,1)', 'rgba(139,69,19,1)'];
+const color_codes = {
+    "TCTCGTCCACGGGTAAC" : "#ff0000B3",
+    "TCTCGTCCACGGGTGGG" : "#ffa500B3",
+    "TTTCGTCCACGTGTGGG" : "#008000B3",
+    "CCCCGCCCACAGGTGGG" : "#0000ffB3",
+    "CCCCTCTCACAGTTGGG" : "#ffd700B3",
+    "CCCTGCCTGTAGGCGGG" : "#87cefaB3",
+    "TCTCGTCCACGTGTGGG" : "#a52a2aB3",
+    "CCCTGCCCACAGGCGGG" : "#000000B3",
+    "CCCCTCCCACAGGTGGG" : "#ffc0cbB3",
+    "CCCTGCTCACAGGCGGG" : "#ffff00B3",
+    "TCTCTTCCACGGGTGGG" : "#bc8f8fB3",
+    "TCTYGTCCACGGGTGGG" : "#b22222B3",
+    "-TTCGTCCACGTGTGGG" : "#ffe4e1B3",
+    "TTTCTTCCACGTGTGGG" : "#e9967aB3",
+    "-CTCGTCCACGGGTGGG" : "#a0522dB3",
+    "CCCCGCCCACAGTTGGG" : "#8b4513B3",
+    "-CCTGCCTGTAGGCGGG" : "#cd853fB3",
+    "-CTCGTCCACGGGTAAC" : "#deb887B3",
+    "CCCCTCCCACAGTTGGG" : "#ffdeadB3",
+    "CCCCDCTCACAGTTGGG" : "#ffe4b5B3",
+    "-CCCTCCCACAGGTGGG" : "#fffaf0B3",
+    "-CCTGCTCACAGGCGGG" : "#fffacdB3",
+    "-CCCTCTCACAGTTGGG" : "#bdb76bB3",
+    "CCCCDCCCACAGGTGGG" : "#ffffe0B3",
+    "TCTCGTCCACGGGTDDV" : "#9acd32B3",
+    "CCCYGCCCACAGGTGGG" : "#7fff00B3",
+    "TCTCGCCCACGGGTGGG" : "#8fbc8fB3",
+    "CCCTGCCCGTAGGCGGG" : "#228b22B3",
+    "TTTCGTCCACGGGTGGG" : "#2e8b57B3",
+    "CCCCGCCCACAGGCGGG" : "#f5fffaB3",
+    "CCCCGCTCACAGTTGGG" : "#7fffd4B3",
+    "CCCTGCCCATAGGCGGG" : "#f0ffffB3",
+    "-CCCGCCCACAGGTGGG" : "#2f4f4fB3",
+    "CCCTGCCCACAGG-GGG" : "#008b8bB3",
+    "CCCTTCCCACAGGCGGG" : "#00ced1B3",
+    "TCCCGTCCACGTGTGGG" : "#00bfffB3",
+    "TCYCGTCCACGGGTDDV" : "#f0f8ffB3",
+    "CYCCTCCCACAGGTGGG" : "#778899B3",
+    "TCTTGTCCACGGGTGGG" : "#6495edB3",
+    "CCTTGCCCACGGGCGGG" : "#e6e6faB3",
+    "CCCTGCCCACAGGTGGG" : "#00008bB3",
+    "CCCYGCCCACAGGYGGG" : "#483d8bB3",
+    "-CACTCCCACAGGTGGG" : "#8a2be2B3",
+    "TTTYGTCYACGTGTDGG" : "#9400d3B3",
+    "CCYCDCYCACAGGTGGG" : "#dda0ddB3",
+    "CCCCGCTCACAGGCGGG" : "#ff00ffB3",
+    "TTYYGTCYACGTGTDDV" : "#c71585B3",
+    "YCCYGCCYRCAGGCGGG" : "#fff0f5B3",
+    "OTHER" : "#808080"
+};
 const color_list_pie = ['#FF6384', '#36A2EB', '#FFCE56', '#FFCB56'];
 var dataset_template = {
     label: 'My First dataset',
@@ -94,6 +143,12 @@ const Map = ({setTooltipContent, setSelectedContent}) => {
                         {({ geographies }) =>
                             geographies.map(geo => (
                             <Geography
+                                fill={geo.properties.NAME in region_pie_chart ?
+                                    color_codes[Object.keys(region_pie_chart[geo.properties.NAME])[0]] :
+                                        geo.properties.NAME in country_name_mapping ? 
+                                            color_codes[Object.keys(region_pie_chart[country_name_mapping[geo.properties.NAME]])[0]] 
+                                                : "#D6D6DA"}
+                                stroke="#EAEAEC"
                                 key={geo.rsmKey}
                                 geography={geo}
                                 onMouseEnter={() => {
@@ -115,7 +170,7 @@ const Map = ({setTooltipContent, setSelectedContent}) => {
                                         var new_dataset = JSON.parse(JSON.stringify(dataset_template));
                                         data["datasets"].push(new_dataset);
                                         data["datasets"][i]["data"] = ism_data["data"][ism_data["isms"][i]];
-                                        data["datasets"][i]["borderColor"] = color_list[i];
+                                        data["datasets"][i]["borderColor"] = color_codes[ism_data["isms"][i]];
                                         data["datasets"][i]["label"] =  ism_data["isms"][i];
                                     }
                                     num_to_display = Math.min(4, ism_data['num_ism']);
@@ -124,9 +179,9 @@ const Map = ({setTooltipContent, setSelectedContent}) => {
                                     var ism_pie_keys = Object.keys(ism_data["pie"]);
                                     for (i = 0; i < num_to_display; i++){
                                         data_pie["datasets"][0]["data"].push(ism_data["pie"][ism_pie_keys[i]][1]);
-                                        data_pie["labels"].push(ism_pie_keys[i]);
-                                        data_pie["datasets"][0]["backgroundColor"].push(color_list_pie[i]);
-                                        data_pie["datasets"][0]["hoverBackgroundColor"].push(color_list_pie[i]);
+                                        data_pie["labels"].push(ism_pie_keys[i].concat(" ", ism_data["pie"][ism_pie_keys[i]][0]));
+                                        data_pie["datasets"][0]["backgroundColor"].push(color_codes[ism_pie_keys[i]]);
+                                        data_pie["datasets"][0]["hoverBackgroundColor"].push(color_codes[ism_pie_keys[i]]);
                                     }
                                     setSelectedContent(NAME);
                                     setOpen(true);
@@ -134,10 +189,10 @@ const Map = ({setTooltipContent, setSelectedContent}) => {
                                     console.log(data_pie);
                                 }}
                                 style={{
-                                    default: {
-                                        fill: "#D6D6DA",
-                                        outline: "none"
-                                    },
+                                    //default: {
+                                    //    fill: "#D6D6DA",
+                                    //    outline: "none"
+                                    //},
                                     hover: {
                                         fill: "#F53",
                                         outline: "none"
