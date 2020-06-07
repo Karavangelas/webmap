@@ -28,7 +28,7 @@ function AppTabs() {
   return (
     <div>
     <p></p>
-      <h2>ISM WebMap</h2>
+      <h2>WebMap</h2>
       <p></p>
      <Tabs>
       <div label="WebMap">
