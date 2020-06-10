@@ -53,21 +53,38 @@ function AppTabs() {
         <p align="justify">We would like to thank GISAID and <a href="https://github.com/nextstrain" target="_blank" rel="noopener noreferrer">Nextstrain</a> for sharing the sequence data and metadata.
          We also gratefully acknowledge the authors, originating and submitting laboratories of the sequences from GISAID’s EpiFlu Database on which this research is based.
           All submitters of data may be contacted directly via the <a href="https://www.gisaid.org/" target="_blank" rel="noopener noreferrer">GISAID</a> website.</p>
+        <p align="justify">Special thanks to:</p>
+        <ul align="justify" type='square'>
+          <li>Zhengqiao Zhao</li>
+          <li>Dr. Gail L. Rosen</li>
+          <li>Bahrad A. Sokhansanj</li>
+        </ul>     
       </div>
       <div label="Info">
         <h3>Project Information and Source Code</h3>
         <p></p>
-        <a href="https://github.com/EESI/ISM" target="_blank" rel="noopener noreferrer">ISM GitHub link</a>
-        <p></p>
-        <p align="justify"><b><u>General Info</u></b></p>
+        <p align="justify"><b><u>General Info</u></b> &rarr; <a href="https://github.com/Karavangelas/webmap" target="_blank" rel="noopener noreferrer"> WebMap GitHub</a></p>
         <p align="justify">The Covid-19 WebMap is a website created to display Covid-19 data in an interactive way. This is done with the use of ISMs, 
         which are described in the section below. The interactive WebMap allows users to click on a certain country on the map, and visualize important 
         Covid-19 data regarding a specific country. This data includes relative abundance graphs and ISM pie charts.
-        </p>
         <p></p>
-        <p align="justify"><b><u>ISM</u></b></p>
+        <p>Website contributors:</p>
+        <ul type='square'>
+          <li>Kleanthis Karavangelas</li>
+          <li>Liam Shamir</li>
+          <li>Dan Dunkers</li>
+          <li>Karanveer Singh</li>
+          <li>Dan Drzewicki</li>
+        </ul>
+        </p>
+  
+        <p></p>
+        <p align="justify"><b><u>ISMs</u></b> &rarr; <a href="https://github.com/EESI/ISM" target="_blank" rel="noopener noreferrer"> ISM GitHub</a></p> 
         <p align="justify">Informative Subtype Markers (ISM) is an efficient framework for genetic subtyping of a pandemic virus and is implemented for SARS-CoV-2, the novel coronavirus that causes COVID-19. 
         The use of ISMs permits subtyping individual SARS-CoV-2 virus genomes, and in essence generating a signature that can be readily used to track viral evolution through geography and time.</p>
+
+        
+        
       </div>
     </Tabs>
     </div>
